@@ -57,6 +57,7 @@ quit;
 
 sqoop import --connect jdbc:mysql://localhost/zeyodb --username root --password cloudera --m 1 --table zeyotab --delete-target-dir --target-dir /user/cloudera/firstimport
 
+sqoop import --connect jdbc:mysql://prabadb.cpwekyc2ag29.ap-south-1.rds.amazonaws.com/zeyodb --username root --password Aditya908 --table fruits --m 1 --delete-target-dir --target-dir  /user/cloudera/sunitadir
 ===================
 🔴 *validate the date*
 ===================
