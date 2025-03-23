@@ -50,7 +50,7 @@ select * from z2;
 ================
 🔴Validate Join
 ================
-
+select a.id,a.name,a.city,a.mode,b.product from z1 a join z2 b on a.id=b.id; --- simple query one.
 select a.*,b.product from z1 a join z2 b on a.id=b.id;
 
 ================
