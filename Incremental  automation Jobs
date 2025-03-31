@@ -30,7 +30,7 @@ quit
 ==========================
 
 cd
-echo -n cloudera>passfile
+echo -n cloudera>/home/cloudera/passfile
 
 sqoop job --delete zjob
 
