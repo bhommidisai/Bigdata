@@ -1,4 +1,53 @@
-Must and should mappers are need priumary column in table and every time sqoop needs new file name because it's not override function at mappers in sqoop.
+
+ Mappers in Sqoop:
+Definition:
+Mappers in Sqoop refer to parallel tasks used to split a large dataset during the import process. By default, Sqoop divides the data based on the primary key or another column (specified by the --split-by option) to allow parallel execution. Each mapper processes a portion of the data independently, improving performance by reducing the time needed to import large tables.
+
+Key Points:
+Mappers break the data into smaller chunks and execute in parallel, which speeds up data transfer.
+
+The number of mappers is specified using the --num-mappers option. The default is typically 4.
+
+Split Key: The column used to split the data (usually a numeric column like an ID or timestamp) must be specified with the --split-by option if the table lacks a primary key.
+
+Choosing the right number of mappers is important: Too few may result in slow performance, while too many can overload the source database.
+
+For small datasets, using just one mapper (--num-mappers 1) may be more efficient.
+
+Example Answer in an Interview:
+"In Sqoop, mappers are used for parallel data extraction from a source database into a destination (like HDFS, Hive, or S3). The data is split based on a split column, and each mapper processes a segment of the data. This parallelization significantly speeds up the data transfer. However, choosing the right number of mappers is crucial. If you specify too many mappers, it can cause excessive load on the database, while too few mappers can result in inefficient imports."
+
+
+
+Direct Mode in Sqoop:
+Definition:
+Direct mode in Sqoop is an optimized import method that bypasses the traditional JDBC method and uses the native database tools (e.g., mysqldump for MySQL) to import data. This mode offers a significant performance improvement for importing large datasets because it uses the native database tools, which are typically more efficient than standard JDBC-based imports.
+
+Key Points:
+Faster Imports: Direct mode leverages database-specific tools (e.g., mysqldump for MySQL) for faster data extraction.
+
+Supported Databases: Direct mode is available only for MySQL and PostgreSQL.
+
+No Support for Incremental Imports: Direct mode does not support incremental imports (e.g., --incremental).
+
+Use Cases: It's ideal for importing large datasets where performance is a concern, and the table structure supports splitting (e.g., with a primary key or numeric column).
+
+Limitations: It doesn't support some advanced features such as incremental imports or complex WHERE clauses for filtering.
+
+Example Answer in an Interview:
+"Direct mode in Sqoop allows for faster data imports by bypassing JDBC and using the native database export tools (like mysqldump for MySQL) to transfer data. This mode is optimized for large datasets and can significantly reduce the time it takes to import data. However, direct mode is only available for MySQL and PostgreSQL, and it does not support incremental imports or complex filtering. It's best used when performance is the top priority, and the table structure is simple enough to support parallel imports."
+
+Comparison:
+Mappers are about parallel processing, dividing the data into chunks to be processed simultaneously by multiple tasks, thus improving performance.
+
+Direct Mode is about using native database tools for faster data import, bypassing JDBC and leveraging database-specific features for optimized performance.
+
+
+Sample Interview Answer:
+"In Sqoop, mappers are used to parallelize the import process, breaking the data into smaller chunks that are processed by multiple parallel tasks. This allows for faster data transfers, especially for large tables. However, the number of mappers should be chosen wisely to avoid overloading the source database.
+
+On the other hand, direct mode enhances performance by using the native tools of the source database (like mysqldump for MySQL) instead of JDBC. This results in much faster data imports but comes with limitations, such as no support for incremental imports or complex WHERE clauses. Direct mode is primarily useful for large-scale data imports, where performance is a key concern."
+>>>>>>>> Must and should mappers are need priumary column in table and every time sqoop needs new file name because it's not override function at mappers in sqoop.
 
 
 
