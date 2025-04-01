@@ -1,0 +1,14 @@
+Must and should mappers are need priumary column in table.
+SHOW KEYS FROM table_name WHERE Key_name = 'PRIMARY';
+
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
+
+sqoop import \
+--connect jdbc:mysql://localhost/zeyodb \
+--username root \
+--password cloudera \
+--table zeyotab \
+--target-dir /user/cloudera/indir \
+--direct \
+--num-mappers 4 \
+--split-by id
