@@ -47,7 +47,7 @@ hadoop fs -cat  /user/cloudera/mdata2/part-m-00001
 
 
 ===============
-🔴 Mapper 4 /NO MAPPERS
+🔴 Mapper 4 /NO MAPPERS (default value is 4)
 ===============
 
 sqoop import --connect jdbc:mysql://localhost/mcheck --username root --password cloudera --table mtab --split-by id --delete-target-dir --target-dir /user/cloudera/mdata4
