@@ -1,0 +1,8 @@
+Import
+
+sqoop import --connect jdbc:mysql://localhost/udb --username root --password cloudera --table  utab --m 1 --target-dir /user/cloudera/datadir
+
+
+Export
+
+sqoop export --connect jdbc:mysql://localhost/udb --username root --password cloudera --table  utab --m 1 --export-dir /user/cloudera/datadir
