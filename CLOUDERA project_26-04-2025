@@ -10,7 +10,6 @@ mysql -uroot -pcloudera
 
 Create  database if not exists prodb;
 use prodb;
-use projdb;
 
 select * from customer_total;
 
