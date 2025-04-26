@@ -35,3 +35,15 @@ sqoop import --connect jdbc:mysql://localhost/zdb --username root --password clo
 hadoop   fs   -ls    /user/cloudera/pardir
 
 hadoop   fs    -cat   /user/cloudera/pardir/*
+
+
+
+
+
+erialization and Deserialization in Big Data
+
+In big data, serialization is the process of converting a structured object into a format that can be stored or transmitted, while deserialization is the reverse process of reconstructing the structured object from its serialized format.
+
+Serialization: The process of translating structured data or object state into a format that can be stored (e.g., on disk or in memory) or transmitted (e.g., over a network connection).  It's like taking a complex object and flattening it into a string of bytes.
+
+Deserialization: The process of reconstructing the original structured data or object from its serialized format.  It's the reverse of serialization, turning the string of bytes back into a usable object.
