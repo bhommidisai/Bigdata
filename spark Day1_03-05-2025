@@ -1,0 +1,84 @@
+[10:06 AM, 5/3/2025] Sai Aditya Number Save it please: Hive  Performance Tuning
+
+Partitions
+
+Proper File formats (Parquet file format)
+
+
+
+Engine Change 
+
+set hive.execution.engine = tez  (before)
+
+InMemory Computation
+
+
+Parallel Execution --- By Enabling it-- process gets faster
+
+set   hive.exec.parallel=true
+
+
+
+
+
+
+
+Vectorization
+
+By default vectorization is false
+
+Enable it below property
+
+set hive.vectorized.execution.enabled = true;
+
+By Default -- Hive would process 1 Row at a time
+
+But By enabling vectorization -- Hive would process 1024 Rows at a time
+
+
+Mapside Join  in Hive ===== (Broadcast Join in spark)
+[10:07 AM, 5/3/2025] Sai Aditya Number Save it please: hive recap
+
+sql layer on HDFS
+
+Back end engine --- MAPREDUCE
+
+It runs on HDFS
+
+DATAWAREHOUSE ON HDFS
+
+E L T PURPOSE
+
+QUERY TIME PARSING
+
+STRUCTURED AND SEMI STRUCTURED
+
+EVERY THING YOU DO HIVE-- IMPACT HDFS AT THE BACKEND
+
+CREATE DATABASE- CREATE TABLE IMPACT HIVE WAREHOUSE
+
+YOU CAN LOAD DATA FROM EDGE NODE-
+
+	load data local inpath '' into table tablename;
+
+You can also create table on existing directory
+
+	create table tablename ()  location '';
+
+Types of tables in Hive ---
+
+
+	Managed----If you drop table --- deletes back end directory
+	External---If you drop table --- does not delete back end dir
+
+
+Partitions ---- Speed up the Process
+		Static Load partitions
+		Static insert Partitions
+		Dynamic Partitions
+
+
+Hive Cloud analytics
+		Hive is same but in cloud we can also create tables on CLOUD STORAGES(S3,BLOBS,CLOUD STORAGE)
+
+AVRO Supports  schema Evolution --- Every avro file will columns inside it --- it gets matched with Hive columns
