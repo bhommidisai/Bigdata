@@ -1,0 +1,88 @@
+## FULL CODE
+
+print("==== started====")
+
+a = 2
+print(a)
+
+
+b = a + 2
+print(b)
+
+
+c = "zeyobron"
+print(c)
+
+
+d= c + "Analytics"
+print(d)
+
+
+
+lis = [ 1 , 2 , 3 , 4]
+
+rdd = sc.parallelize(lis)
+print("========= RAW LIS=======")
+print(rdd.collect())
+print()
+
+
+addls = rdd.map(lambda x : x + 2)
+print("========= addls=======")
+print(addls.collect())
+print()
+
+mulls = rdd.map(lambda x : x * 10)
+print("========= mulls=======")
+print(mulls.collect())
+print()
+
+
+filrdd = rdd.filter (lambda x : x > 2)
+print("========= filrdd=======")
+print(filrdd.collect())
+print()
+
+
+
+ls =  [ "zeyobron", "zeyo" , "meta"]
+
+rddstr = sc.parallelize(ls)
+print("=========rddstr=======")
+print(rddstr.collect())
+print()
+
+
+concat = rddstr.map(lambda x : x + "Analytics")
+print("=========concat=======")
+print(concat.collect())
+print()
+
+
+
+
+filstr = rddstr.filter(lambda x : 'zeyo' in x)
+print("=========filstr=======")
+print(filstr.collect())
+print()
+
+
+
+repstr = rddstr.map(lambda x : x.replace("zeyo","tera"))
+print("=========repstr=======")
+print(repstr.collect())
+print()
+
+
+fl = [ "A~B" , "C~D" ]
+
+rddfl = sc.parallelize(fl)
+print("=========rddfl=======")
+print(rddfl.collect())
+print()
+
+
+flat = rddfl.flatMap(lambda x : x.split("~"))
+print("=========flat=======")
+print(flat.collect())
+print()
