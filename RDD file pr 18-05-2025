@@ -1,0 +1,169 @@
+ print("==== started====")
+
+rawlis = [
+            "State->TN~City->Chennai",
+            "State->Kerala~City->Trivandrum"
+]
+
+rddlis = sc.parallelize(rawlis)
+print()
+print("=========rddlis========")
+print(rddlis.collect())
+
+flatd = rddlis.flatMap( lambda  x : x.split("~") )
+print()
+print("=========flatd========")
+print(flatd.collect())
+
+states = flatd.filter( lambda x : 'State' in x )
+print()
+print("=========states========")
+print(states.collect())
+
+cities = flatd.filter(lambda x : 'City' in x )
+print()
+print("=========cities========")
+print(cities.collect())
+
+finalstates = states.map( lambda x : x.replace("State->",""))
+print()
+print("=========finalstates========")
+print(finalstates.collect())
+
+finalcities = cities.map(lambda   x :  x.replace(…
+
+
+data = sc.textFile("state.txt")
+print()
+print("====RAW DATA====")
+data.foreach(print)
+
+
+flatd = data.flatMap( lambda  x : x.split("~") )
+print()
+print("=========flatd========")
+flatd.foreach(print)
+
+
+states = flatd.filter( lambda x : 'State' in x )
+print()
+print("=========states========")
+states.foreach(print)
+
+
+
+cities = flatd.filter(lambda x : 'City' in x )
+print()
+print("=========cities========")
+cities.foreach(print)
+
+
+
+finalstates = states.map( lambda x : x.replace("State->",""))
+print()
+print("=========finalstates========")
+finalstates.foreach(print)
+
+
+finalcities = cities.map(lambda   x :  x.replace("City->" , ""))
+print()
+print("=========finalcities========")
+finalcities.foreach(print)
+
+
+Task 2 ----- 3 Questions
+
+	What is data skewness ?
+	What is difference between RDD and DATAFRAME ?
+	What is Data ambiguity?
+	What is lazy evaluation ?
+
+
+
+data = sc.textFile("usdata.csv")
+print()
+print("======RAW DATA=====")
+data.foreach(print)
+
+
+
+
+fildata = data.filter( lambda  x   :  len(x) > 200 )
+print()
+print("======fildata=====")
+print()
+fildata.foreach(print)
+
+
+
+
+flatdata = fildata.flatMap( lambda  x : x.split(",") )
+print()
+print("======flatdata=====")
+print()
+flatdata.foreach(print)
+
+
+
+repdata = flatdata.map( lambda x : x.replace("-",""))
+print()
+print("======repdata=====")
+print()
+repdata.foreach(print)
+
+
+
+
+condata = repdata.map(lambda x : x + ",zeyo")
+print()
+print("======condata=====")
+print()
+condata.foreach(print)
+
+
+print("======== DATA WRITTEN========")
+
+
+=======================DATA READ FROM FILE .CSV======================================
+
+data = sc.textFile("usdata.csv")
+print()
+print("======RAW DATA=====")
+print(data.collect())
+
+
+
+fildata = data.filter( lambda  x   :  len(x) > 200 )
+print()
+print("======fildata=====")
+print()
+print(fildata.collect())
+
+
+
+
+flatdata = fildata.flatMap( lambda  x : x.split(",") )
+print()
+print("======flatdata=====")
+print()
+print(flatdata.collect())
+
+
+
+repdata = flatdata.map( lambda x : x.replace("-",""))
+print()
+print("======repdata=====")
+print()
+print(repdata.collect())
+
+
+
+
+condata = repdata.map(lambda x : x + ",zeyo")
+print()
+print("======condata=====")
+print()
+print(condata.collect())
+
+
+print("======== DATA WRITTEN========")
