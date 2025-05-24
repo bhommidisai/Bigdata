@@ -1,0 +1,181 @@
+spark.sql ("select * from df").show()
+
+spark.sql ("select id,product from df").show ()
+print ("======sparksql=========")
+
+spark.sql ("select id,product,category from df where category='Exercise'").show()
+####where  operation
+spark.sql ("select id,product,category from df where category='Exercise' and spendby='cash'").show()
+print ("======sparkwhere=========")
+
+
+
+###In operation
+spark.sql ("select id,category from df where category in ('Exercise Band','Team Sports')").show()
+print ("======sparkIn=========")
+
+##Like Operator
+
+spark.sql ("select id, product from df where product LIKE '%Gym%' ").show()
+
+###Not equal to
+
+spark.sql ("select id, product from df where category !='Exercise' ").show ()
+
+##Not in
+print ("======sparnotin=========")
+spark.sql ("select id,category from df where product is null ").show ()
+
+spark.sql ("select id,category from df where product  NOT IN ('GymnasticsPro','Rings') ").show ()
+
+##is operator
+print ("======isoperator=========")
+
+spark.sql ("select * from df where product IS NULL ").show ()
+spark.sql ("select * from df where product IS  NOT  NULL ").show ()
+
+spark.sql("SELECT product FROM df WHERE product IS NULL").show()
+spark.sql("SELECT product FROM df WHERE product IS NOT NULL").show()
+
+###MAX
+
+spark.sql ("select MAX(id) as idmax from df").show ()
+##MIN
+spark.sql ("select MIN(id) as idmin from df").show()
+
+###sample simple query
+
+spark.sql ("select count(*) from df").show()
+
+spark.sql ("select count(1) from df").show ()
+
+
+####CONDITIONAL STATEMENT
+
+##spark.sql("SELECT CASE WHEN spendby='cash' THEN 1 ELSE 0 END AS status FROM df").show()
+
+spark.sql ("select id, category, concat (id,'_',category) as condata from df").show()
+
+spark.sql ("select id, category, concat_ws ('_',id,category,product) as condata from df").show()
+
+
+
+###lowe case and uppercase
+
+spark.sql ("select product, lower (product) as lower from df").show()
+spark.sql ("select category, upper  (category) as upper from df").show()
+
+###CEIL OPERATION
+
+spark.sql ("select amount, ceil(amount) as ceil from df").show ()
+spark.sql ("select amount, round(amount) as round from df").show()
+
+
+###Replace NULL values
+
+spark.sql("select product,coalesce(product,'NA') as null from df ").show()
+###trim
+
+spark.sql ("select trim(product) as trimspace from df").show()
+
+####CONDITIONAL STATEMENT
+
+##spark.sql("SELECT CASE WHEN spendby='cash' THEN 1 ELSE 0 END AS status FROM df").show()
+
+spark.sql ("select id, category, concat (id,'_',category) as condata from df").show()
+
+spark.sql ("select id, category, concat_ws ('_',id,category,product) as condata from df").show()
+
+
+
+###lowe case and uppercase
+
+spark.sql ("select product, lower (product) as lower from df").show()
+spark.sql ("select category, upper  (category) as upper from df").show()
+
+###CEIL OPERATION
+
+spark.sql ("select amount, ceil(amount) as ceil from df").show ()
+spark.sql ("select amount, round(amount) as round from df").show()
+
+
+###Replace NULL values
+
+spark.sql("select product,coalesce(product,'NA') as null from df ").show()
+###trim
+
+spark.sql ("select trim(product) as trimspace from df").show()
+
+
+##Distinct means unique values fetech from column
+spark.sql("select DISTINCT category from df").show()
+spark.sql("select DISTINCT category from df1").show()
+
+
+spark.sql ("select DISTINCT spendby from df").show()
+
+###substring
+
+spark.sql("select substring (product,1,10) as sub from df").show()
+
+
+###split operation
+
+spark.sql ("select product,split(product,'')[0] as split from df").show()
+
+
+###split operation
+##spark.sql ("select product,split(product,'') as split from df").show()
+
+spark.sql ("select product,split(product,' ')[0] as split from df").show()
+
+###UNION combined two data frames vertically.
+
+##spark.sql("select * from df union all select * from df1").show()
+
+##spark.sql("select * from df").show() 
+
+###UNION eliminates duplicates data in combined column
+spark.sql ("select * from df union select * from df1").show()
+
+
+
+spark.sql("SELECT category, SUM(amount) AS sum_amount FROM df GROUP BY category").show()
+
+
+###UNION combined two data frames vertically.
+
+##spark.sql("select * from df union all select * from df1").show()
+
+##spark.sql("select * from df").show()
+##spark.sql ("select * from df union select * from df1").show()
+
+
+
+spark.sql("SELECT category, SUM(amount) AS sum_amount FROM df GROUP BY category").show()
+
+spark.sql("SELECT category,spendby,SUM(amount) AS sum FROM df GROUP BY category,spendby").show()
+
+spark.sql("SELECT category,spendby,SUM(amount)AS sum,count(amount)as total FROM df GROUP BY category,spendby").show()
+
+spark.sql ("select category, max(amount) as max from df GROUP BY category ").show()
+spark.sql ("select category, max(amount) as max from df GROUP BY category order by category").show()
+
+
+
+###MIN WITH GROUP
+spark.sql ("select category, min(amount) as min from df GROUP BY category order by category Asc").show()
+###MAX
+spark.sql ("select category, min(amount) as min from df GROUP BY category order by category Desc").show()
+#### MIN
+spark.sql("select category,amount,ROW_NUMBER()OVER (PARTITION BY category order by amount DESC) as row from df").show()
+### ROW_NUMBER
+spark.sql("select category,amount,rank()OVER (PARTITION BY category order by amount DESC) as rank from df").show()
+### rank
+spark.sql("select category,amount,DENSE_RANK()OVER (PARTITION BY category order by amount DESC) as denserank from df").show()
+##### LEAD
+spark.sql("select category,amount,lead(amount)OVER (PARTITION BY category order by amount DESC) as lead from df").show()
+
+
+
+
